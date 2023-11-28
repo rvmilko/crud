@@ -30,7 +30,9 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        User::create($request->only(['name', 'email']));
         
+        return redirect()->route('users.index');
     }
 
     /**
@@ -54,7 +56,9 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->only(['name', 'email']));
+
+        return redirect()->route('users.index');
     }
 
     /**
