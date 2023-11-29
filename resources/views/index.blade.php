@@ -17,10 +17,19 @@
         @foreach ($users as $user)
         <tr>
             <th scope="row">{{ $user->id }}</th>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
             <td>
-                <a href="{{ route('users.edit', $user) }}" type="button" class="btn btn-warning">Edit</a>
+                <a href="{{ route('users.show', $user) }}">{{ $user->name }}</a>
+            </td>
+            <td>
+                <a href="{{ route('users.show', $user) }}">{{ $user->email }}</a>
+            </td>
+            <td>
+                <form method="POST" action="{{ route('users.destroy', $user) }}">
+                    @csrf
+                    @method("DELETE")
+                    <a href="{{ route('users.edit', $user) }}" type="button" class="btn btn-warning">Edit</a>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </td>
         </tr>
         @endforeach
