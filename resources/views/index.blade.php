@@ -4,7 +4,7 @@
 
 @section('content')
     <a class="btn btn-primary" role="button" href="{{ route('users.create') }}">Create user</a>
-    <table class="table">
+    <table class="table table-sm">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -27,13 +27,15 @@
                 <form method="POST" action="{{ route('users.destroy', $user) }}">
                     @csrf
                     @method("DELETE")
-                    <a href="{{ route('users.edit', $user) }}" type="button" class="btn btn-warning">Edit</a>
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a href="{{ route('users.edit', $user) }}" type="button" class="btn btn-warning btn-sm">Edit</a>
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                 </form>
             </td>
         </tr>
         @endforeach
         </tbody>
     </table>
+
+    {{ $users->links() }}
 
 @endsection
